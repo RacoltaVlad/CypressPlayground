@@ -1,0 +1,8 @@
+version: '2.1'
+orbs:
+  cypress: cypress-io/cypress@3
+workflows:
+  use-my-orb:
+    jobs:
+      - cypress/run:
+          cypress-command: npx cypress run --browser chrome --spec cypress/e2e/testPages/*.cy.js 
