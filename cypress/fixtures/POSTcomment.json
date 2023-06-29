@@ -1,0 +1,6 @@
+{
+    "name": "Using TEST in cy.intercept()",
+    "email": "helloTEST@cypress.io",
+    "body": "You can change the method used to be TEST",
+    "id": 999
+  }
