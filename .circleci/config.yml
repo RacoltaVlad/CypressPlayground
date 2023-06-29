@@ -2,8 +2,13 @@ version: '2.1'
 orbs:
   cypress: cypress-io/cypress@3
 workflows:
-  use-my-orb:
+  testPages:
     jobs:
       - cypress/run:
           cypress-command: npx cypress run --browser chrome --spec cypress/e2e/testPages/*.cy.js
-          install-browsers: true 
+          install-browsers: true
+  APItests:
+    jobs:
+      - cypress/run:
+          cypress-command: npx cypress run --spec cypress/e2e/APItests/**/*
+          install-browsers: true         
