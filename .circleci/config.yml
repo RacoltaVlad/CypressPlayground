@@ -30,10 +30,18 @@ workflows:
   testPages:
     jobs:
       - cypress/run:
+          pre-steps:
+               - clean-report
           cypress-command: npx cypress run --browser chrome --spec cypress/e2e/testPages/*.cy.js
           install-browsers: true
+          post-steps:
+                - report-tests
   APItests:
     jobs:
       - cypress/run:
+          pre-steps:
+               - clean-report
           cypress-command: npx cypress run --spec cypress/e2e/APItests/**/*
-          install-browsers: true         
+          install-browsers: true
+          post-steps:
+                - report-tests         
