@@ -1,6 +1,31 @@
 version: '2.1'
 orbs:
   cypress: cypress-io/cypress@3
+  
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Commands ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+commands:
+  report-tests:
+    description: |
+      Generate and combine report.
+    steps:
+      - run:
+           name: generate combined report
+           when: always
+           command: |
+                  npx mochawesome-merge "cypress/results/*.json" > mochawesome.json
+                  npx marge mochawesome.json
+      - store_artifacts:
+                path: mochawesome-report
+  clean-report:
+    description: |
+      Deletes reports from previous runs.
+    steps:
+      - run:
+           name: Delete reports 
+           when: always
+           command: rm -rf cypress/results & rm -rf mochawesome-report & rm -rf mochawesome.json
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Workflows ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #             
 workflows:
   testPages:
     jobs:
